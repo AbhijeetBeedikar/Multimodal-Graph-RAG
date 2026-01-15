@@ -82,11 +82,11 @@ with cols2:
 if uploaded_files:
     if upload:
         # Create the directory if it doesn't exist
-        local = Path(tempfile.gettempdir()) / "local_data"
+        local = Path("/local_data")
         local.mkdir(parents=True, exist_ok=True)
         for uploaded_file in uploaded_files:
 
-            file_path = Path(tempfile.gettempdir()) / "local_data" / uploaded_file.name
+            file_path =  Path("/local_data") / uploaded_file.name
             # Write the bytes to local memory
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
