@@ -90,7 +90,7 @@ if uploaded_files:
             # Write the bytes to local memory
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
-            st.session_state.cli = process(Path(tempfile.gettempdir()))
+            st.session_state.cli = process(Path(tempfile.gettempdir()) / "local_data")
         st.success(f"Saved all files")
 
 if delete:
