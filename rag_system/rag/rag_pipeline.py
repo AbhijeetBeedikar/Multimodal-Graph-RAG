@@ -2,7 +2,7 @@ import rag_system.ingestion.pdfingestion as pdfingestion
 import rag_system.ingestion.img_ingest as img_ingest
 import rag_system.ingestion.audio_ingest as audio_ingest
 import importlib
-
+import os
 from ..graph.graph_builder import process_document_for_graph
 
 importlib.reload(pdfingestion)
@@ -23,7 +23,7 @@ def ingest_and_index(path):
     #elif path.lower().endswith(('.mp4', '.mov', '.avi')):
      #   docs = ingest_video(path)
     else:
-        raise ValueError(f"Unsupported file format {path}")
+        raise ValueError(f"Unsupported file format {os.listdir(path)}")
 
     # Building the Graph
     process_document_for_graph(" ".join([doc.page_content for doc in docs])) # expands the graph according to the entities and relations extracted from all the text within a certain file
