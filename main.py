@@ -44,7 +44,7 @@ def process(mediapath):
     client = None
     for file in os.listdir(mediapath):
 
-        (client, collection_name) = rag.ingest_and_index(mediapath + file)
+        (client, collection_name) = rag.ingest_and_index(mediapath / file)
         # Building the Graph
        # corpus_text = get_all_text_from_collection(client, collection_name)
        # print("corpus text obtained")
