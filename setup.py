@@ -1,0 +1,31 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="rag_system",
+    version="0.1.0",
+    packages=find_packages(),
+    install_requires=[
+        "qdrant-client",
+        "langchain",
+        "langchain-google-genai",
+        "google-generativeai",
+        "python-dotenv",
+        "opencv-python",
+        "pillow",
+        "librosa",
+        "deepeval",
+        "networkx",
+        "numpy",
+        "pydantic",
+        "tqdm",
+        "sentence-transformers",
+        "llama-index",
+        "whisper",
+        "streamlit",
+        "langchain-text-splitters",
+        "pdfminer.six",
+        "langchain-qdrant",
+        "langchain-community", 
+        "langchain-core"
+    ]
+)
