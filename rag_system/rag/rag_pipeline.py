@@ -23,7 +23,7 @@ def ingest_and_index(path):
     #elif path.lower().endswith(('.mp4', '.mov', '.avi')):
      #   docs = ingest_video(path)
     else:
-        raise ValueError("Unsupported file format")
+        raise ValueError(f"Unsupported file format {path}")
 
     # Building the Graph
     process_document_for_graph(" ".join([doc.page_content for doc in docs])) # expands the graph according to the entities and relations extracted from all the text within a certain file
