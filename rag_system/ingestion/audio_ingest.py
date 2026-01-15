@@ -57,6 +57,8 @@ def transcribe_audio(path):
     - accents
     - long-form speech
     """
+
+    # TODO: Use faster-whisper (variant of OpenAI's whisper) for audio transcription instead of Gemini
     model = GenerativeModel("gemini-2.5-flash")
     
     prompt = (
@@ -86,6 +88,7 @@ def caption_audio(path):
     - environmental soundscapes
     - mechanical noises
     """
+    # TODO: Use LAION-AI/CLAP for captioning audio
     model = GenerativeModel("gemini-2.5-flash")
     prompt = (
         "Describe this audio clip in one detailed sentence. "

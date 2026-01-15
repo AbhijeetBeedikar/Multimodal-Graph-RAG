@@ -35,6 +35,7 @@ def extract_entities_and_relations(text):
 
 
 def add_to_graph(entity_data):
+    # TODO: create a new knowledge graph in tmp folder in streamlit if it doesn't exist.
     with open("knowledge_graph.gpickle", "rb") as f:  # 'rb' for Read Binary
         G = pickle.load(f)
     entities = entity_data["entities"]

@@ -16,6 +16,8 @@ if GOOGLE_API_KEY is None:
 
 configure(api_key=env.key())
 
+#TODO: Use BLIP instead of Gemini for all image captioning related tasks like image descriptions.
+# Can even be used for OCR is BLIP-3 is used
 
 # -----------------------------
 # Utility: Load image safely
@@ -35,7 +37,7 @@ def run_ocr(image):
     Uses Gemini 1.5 Flash OCR capability.
     Returns extracted text.
     """
-    # REWORK: Use pytesseract library + Whisper for OCR 
+    # TODO: Use pytesseract library + Whisper for OCR
     model = GenerativeModel("gemini-2.5-flash")
 
     prompt = "Extract all readable text from this image. If no readable text exists, return an empty string. Do not add any extra text other than that which is asked for. Be concise in your answer."
@@ -114,11 +116,10 @@ def ingest_image(path):
         modality = "image-text"
         caption = None
         objects = []
-        # REWORK: OCR Data should be chunked
+        # TODO: OCR Data should be chunked
     else:
         # --- Step 2: Captioning + Object Detection ---
 
-        #REWORK: Use BLIP instead of Gemini
         caption = caption_image(image)
         objects = detect_objects(image)
 
