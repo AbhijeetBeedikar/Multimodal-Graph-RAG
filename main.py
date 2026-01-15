@@ -9,8 +9,8 @@ import rag_system.graph.graph_search as search
 importlib.reload(search)
 import rag_system.vector_db.indexing as indexing
 importlib.reload(indexing)
-import os
 import pickle
+#TODO: Store Knowledge graph as a st.session_state rather than an external file. Initialize it to an empty graph initially and then grow out the graph.
 def get_all_text_from_collection(client, collection_name):
     collected = []
     scroll_filter = None
@@ -59,7 +59,6 @@ def user_input(query,client):
     G = pickle.load(f)
   return orch.orchestrate(query, client, G) # returns response in the form of {"response":,"context": }
 
-#user_input("/content/drive/MyDrive/AI_Projects/multimodal_enterprise_rag/rag_system/ingestion/data/General_Resume.pdf","What kind of roles is this candidate most suitable for? Do they have a genuinely good resume?",process(folder_path))
 import streamlit as st
 import os
 import shutil

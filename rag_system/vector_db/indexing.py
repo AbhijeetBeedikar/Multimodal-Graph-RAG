@@ -1,11 +1,3 @@
-import os
-from langchain.chat_models import init_chat_model
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
-
-from qdrant_client.models import Distance, VectorParams
-from langchain_qdrant import QdrantVectorStore
-from qdrant_client import QdrantClient
-import getpass
 import importlib
 import rag_system.vector_db.env_vec as env_vec
 importlib.reload(env_vec)
@@ -13,7 +5,6 @@ importlib.reload(env_vec)
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
-import shutil
 
 
 # ---------------------------------------

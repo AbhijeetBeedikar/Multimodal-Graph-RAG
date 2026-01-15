@@ -13,9 +13,6 @@ importlib.reload(audio_ingest)
 from ..vector_db import indexing as indexing
 importlib.reload(indexing)
 
-#from rag_system.retrieval.hybrid_search import hybrid_search
-
-
 def ingest_and_index(path):
     if path.lower().endswith((".pdf",".txt")):
         docs = pdfingestion.text_split(path)

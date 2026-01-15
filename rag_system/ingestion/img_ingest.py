@@ -1,11 +1,9 @@
 import os
 from PIL import Image
-from io import BytesIO
 import importlib
 import rag_system.ingestion.env as env
 importlib.reload(env)
 
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_core.documents import Document
 
 from google.generativeai import configure, GenerativeModel

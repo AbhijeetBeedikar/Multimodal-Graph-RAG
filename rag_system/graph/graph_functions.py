@@ -1,6 +1,4 @@
 import pickle
-import os
-#os.chdir("/content/drive/MyDrive/AI_Projects/multimodal_enterprise_rag/rag_system/graph")
 with open("knowledge_graph.gpickle", "rb") as f:
   G = pickle.load(f)
 

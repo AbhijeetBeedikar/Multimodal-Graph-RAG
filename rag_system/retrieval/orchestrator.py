@@ -21,7 +21,6 @@ from rag_system.graph.graph_search import (
 from rag_system.graph.graph_builder import extract_entities_and_relations
 from sentence_transformers import SentenceTransformer, util
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
-import pickle
 import importlib
 import rag_system.ingestion.env as env
 importlib.reload(env)

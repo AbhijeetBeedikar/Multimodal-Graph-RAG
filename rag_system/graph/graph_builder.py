@@ -1,4 +1,4 @@
-import google.generativeai as genai
+import google.generativeai as genai #TODO: try from google import genai
 import json
 import importlib
 import rag_system.ingestion.env as env
@@ -6,7 +6,6 @@ importlib.reload(env)
 import os
 import networkx as nx
 import pickle
-import pathlib
 os.environ["GOOGLE_API_KEY"] = env.key()
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 model = genai.GenerativeModel("gemini-2.5-flash")
