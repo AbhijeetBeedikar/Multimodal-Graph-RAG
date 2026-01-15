@@ -16,7 +16,6 @@ google-genai~=1.57.0 # last used 1.49.0
 google-generativeai~=0.8.6
 langchain-google-genai~=2.0.10
 google-ai-generativelanguage~=0.6.15
-google-ai-generativelanguage~=0.6.16
 
 # Vector Database
 qdrant-client~=1.16.2 # last used 1.15.1
