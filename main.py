@@ -11,6 +11,7 @@ import rag_system.vector_db.indexing as indexing
 importlib.reload(indexing)
 import pickle
 from pathlib import Path
+import tempfile
 #TODO: Store Knowledge graph as a st.session_state rather than an external file. Initialize it to an empty graph initially and then grow out the graph.
 def get_all_text_from_collection(client, collection_name):
     collected = []
@@ -81,20 +82,20 @@ with cols2:
 if uploaded_files:
     if upload:
         # Create the directory if it doesn't exist
-        Path("local_data/").mkdir(parents=True, exist_ok=True)
+
         for uploaded_file in uploaded_files:
 
-            file_path = os.path.join("local_data/", uploaded_file.name)
+            file_path = Path(tempfile.gettempdir()) / "local_data" / uploaded_file.name
 
             # Write the bytes to local memory
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
-            st.session_state.cli = process("local_data/")
+            st.session_state.cli = process(Path(tempfile.gettempdir()))
         st.success(f"Saved all files")
 
 if delete:
-    shutil.rmtree("local_data/")
-    os.mkdir("local_data/")
+    shutil.rmtree(Path(tempfile.gettempdir()) / "local_data/")
+    os.mkdir(Path(tempfile.gettempdir()) / "local_data/")
     st.session_state.cli = None
 # 1. Initialize chat history in session state
 if "messages" not in st.session_state:
