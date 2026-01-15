@@ -6,15 +6,17 @@ numpy~=2.2.0
 networkx~=3.6.1 #3.5 was the last used one
 
 # AI & LLM Core (LangChain 1.x / 0.3 ecosystem)
-langchain~=1.2.4 # last used 0.3.27
-langchain-core~=1.2.7 # last used 0.3.79
+langchain~=0.3.27 # last used
+langchain-core~=0.3.79 # last used
 langchain-community~=0.3.31
-langchain-text-splitters~=1.1.0 # last used 0.3.11
+langchain-text-splitters~=0.3.11 # last used
 
 # Google AI Integrations
 google-genai~=1.57.0 # last used 1.49.0
 google-generativeai~=0.8.6
 langchain-google-genai~=2.0.10
+google-ai-generativelanguage~=0.6.15
+google-ai-generativelanguage~=0.6.16
 
 # Vector Database
 qdrant-client~=1.16.2 # last used 1.15.1
