@@ -10,6 +10,7 @@ importlib.reload(search)
 import rag_system.vector_db.indexing as indexing
 importlib.reload(indexing)
 import pickle
+from pathlib import Path
 #TODO: Store Knowledge graph as a st.session_state rather than an external file. Initialize it to an empty graph initially and then grow out the graph.
 def get_all_text_from_collection(client, collection_name):
     collected = []
@@ -79,8 +80,10 @@ with cols2:
     delete = st.button("Delete")
 if uploaded_files:
     if upload:
+        # Create the directory if it doesn't exist
+        Path("local_data/").mkdir(parents=True, exist_ok=True)
         for uploaded_file in uploaded_files:
-            # Construct the local path
+
             file_path = os.path.join("local_data/", uploaded_file.name)
 
             # Write the bytes to local memory
