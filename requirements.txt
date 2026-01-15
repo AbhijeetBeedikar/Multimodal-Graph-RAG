@@ -25,4 +25,4 @@ librosa~=0.11.0
 Pillow~=12.1.0 # last used 11.3.0
 sentence-transformers~=5.2.0 # last used 5.1.2
 
-pdfminer.six~=20251107
+pdfminer.six~=20260107
