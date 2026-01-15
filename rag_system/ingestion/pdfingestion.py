@@ -8,8 +8,7 @@ import os
 # def text_cleaning():
   #NEEDS TO BE DONE BEFORE TEXT SPLITTING (If time permits)
 def text_split(path):
-  print(os.getcwd())
-  if path.lower().endswith(".pdf"):
+  if str(path).lower().endswith(".pdf"):
     loader = PDFMinerLoader(path)
     docs = loader.load()
   else:

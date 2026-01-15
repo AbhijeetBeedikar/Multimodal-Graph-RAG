@@ -14,11 +14,11 @@ from ..vector_db import indexing as indexing
 importlib.reload(indexing)
 
 def ingest_and_index(path):
-    if path.lower().endswith((".pdf",".txt")):
+    if str(path).lower().endswith((".pdf",".txt")):
         docs = pdfingestion.text_split(path)
-    elif path.lower().endswith(('.png', '.jpg', '.jpeg')):
+    elif str(path).lower().endswith(('.png', '.jpg', '.jpeg')):
         docs = img_ingest.ingest_image(path)
-    elif path.lower().endswith(('.mp3', '.wav', '.m4a')):
+    elif str(path).lower().endswith(('.mp3', '.wav', '.m4a')):
         docs = audio_ingest.ingest_audio(path)
     #elif path.lower().endswith(('.mp4', '.mov', '.avi')):
      #   docs = ingest_video(path)
