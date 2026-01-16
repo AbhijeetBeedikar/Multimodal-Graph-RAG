@@ -1,110 +1,175 @@
-# Multimodal Enterprise RAG
+# Multimodal-Graph-RAG
 
-A multimodal Retrieval-Augmented Generation (RAG) system for enterprise applications.
+A multimodal Retrieval-Augmented Generation (RAG) system that combines vector search with knowledge graph retrieval for enhanced enterprise applications.
 
 ## Prerequisites
 
 - Python 3.8+
-- Google Colab (for Option 1)
 - Required Python packages (installed via setup)
+- Gemini API key for the underlying language model
 
 ## Setup
 
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Multimodal-Graph-RAG.git
+cd Multimodal-Graph-RAG
+```
+
+2. Install the package and dependencies:
+```bash
+pip install -e .
+```
+
+This will automatically install all required packages listed in `requirements.txt`.
+
 ### Configuration
 
-Before running the code, you **must** update the API key:
+The application uses Streamlit secrets management for secure API key storage:
 
-1. Navigate to `env.py`
-2. Replace the placeholder API key with your actual API key
-3. **Important**: The current key in `env.py` is a dummy placeholder and will not work
+1. Create a `.streamlit` folder in the project root (if it doesn't exist)
+2. Create a `secrets.toml` file inside `.streamlit`:
+```bash
+mkdir -p .streamlit
+touch .streamlit/secrets.toml
+```
+
+3. Add your API key to `secrets.toml`:
+```toml
+API_KEY = "your-actual-api-key-here"
+```
+
+4. **Important**: Never commit `secrets.toml` to version control. It's already included in `.gitignore`.
 
 ### Directory Structure
 
-The root folder must be `multimodal_enterprise_rag`. 
+The root folder must be `Multimodal-Graph-RAG`. The project is organized as follows:
 
-**Note**: In the provided code, the folder path is `/content/drive/MyDrive/AI_Projects/multimodal_enterprise_rag` because it was designed to run on Google Colab with files stored in Google Drive. Adjust this path according to your environment.
-
-## Running the Code
-
-### Option 1: Run the Colab Notebook
-
-This is the recommended approach if you're using Google Colab.
-
-1. Navigate to the `rag_system` folder
-2. Open `Copy of Enterprise_RAG.ipynb`
-3. Run all code blocks in sequential order
-4. Provide user input using the function format:
-   ```python
-   user_input(media_path, query)
-   ```
-
-### Option 2: Use the Python Files Directly
-
-This option allows you to use the RAG system as a Python package.
-
-#### Step 1: Install the package
-
-```python
-import os
-os.chdir("/root")
-!pip install -e .
+```
+Multimodal-Graph-RAG/
+│
+├── .devcontainer/          # Development container configuration
+├── .idea/                  # IDE configuration files
+├── qdrant_storage/         # Vector database storage
+│
+├── rag_system/             # Core RAG system modules
+│   ├── evaluation/
+│   │   └── deep_eval.py    # Evaluation metrics (under construction)
+│   ├── graph/
+│   │   ├── graph_builder.py    # Knowledge graph construction
+│   │   ├── graph_functions.py  # Graph utility functions
+│   │   └── graph_search.py     # Graph-based retrieval
+│   ├── ingestion/
+│   │   ├── audio_ingest.py     # Audio file processing
+│   │   ├── env.py              # Returns API key
+│   │   ├── img_ingest.py       # Image file processing
+│   │   └── pdfingestion.py     # PDF document processing
+│   ├── rag/
+│   │   └── rag_pipeline.py     # Main RAG orchestration
+│   ├── retrieval/
+│   │   └── orchestrator.py     # Retrieval coordination
+│   └── vector_db/
+│       └── indexing.py         # Vector database indexing
+│
+├── .streamlit/             # Streamlit configuration (create locally)
+│   └── secrets.toml        # API keys (DO NOT COMMIT)
+│
+├── LICENSE                 # MIT License
+├── README.md              # This file
+├── knowledge_graph.gpickle # Serialized knowledge graph
+├── main.py                # Streamlit web application
+├── requirements.txt       # Python dependencies
+└── setup.py              # Package installation configuration
 ```
 
-#### Step 2: Configure the Python path
+## Running the Application
 
-```python
-import os
-import sys
-os.chdir("/root")
-sys.path.append("/root")
+### Streamlit Web Interface (Recommended)
+
+The application is hosted as a Streamlit web app, providing an intuitive interface for interacting with the RAG system.
+
+1. Start the Streamlit server:
+```bash
+streamlit run main.py
 ```
 
-#### Step 3: Import and run
+2. Your browser should automatically open to `http://localhost:8501`
 
-```python
-import importlib 
-import rag_system.main as main 
-importlib.reload(main) 
-main.user_input(media_path, query)
-```
+3. Upload your media files (images, PDFs, audio) and enter your query through the web interface
 
-## Usage
 
-The main interface is through the `user_input()` function:
+## Features
 
-```python
-user_input(media_path, query)
-```
+- **Multimodal Input Support**: Process images, PDFs, and audio files
+- **Hybrid Retrieval**: Combines vector similarity search with knowledge graph traversal
+- **Web Interface**: Easy-to-use Streamlit interface for non-technical users
+- **Secure Configuration**: API keys managed through Streamlit secrets
+- **Knowledge Graph Integration**: Enhanced retrieval through graph-based relationships
 
-**Parameters:**
-- `media_path`: Path to the media file(s) you want to process
-- `query`: Your question or query string
+## Usage Example
+
+### Through the Web Interface
+
+1. Launch the app with `streamlit run main.py`
+2. Upload your media files using the file uploader
+3. Enter your query in the text input field
+4. Click "Submit" to get your answer
+
 
 ## Troubleshooting
 
-- **Import errors**: Ensure you've run the setup commands in the correct order
-- **API errors**: Verify your API key in `env.py` is valid and active
-- **Path errors**: Confirm the root directory matches your environment setup
+### API Key Issues
+- **Error: "API key not found"**: Ensure `secrets.toml` exists in `.streamlit/` and contains your API key
+- **Error: "Invalid API key"**: Verify your API key is active and correctly copied
 
-## Project Structure
+### Path Issues
+- Ensure you're running commands from the `Multimodal-Graph-RAG` root directory
+- Use absolute paths when specifying media folders programmatically
 
-```
-multimodal_enterprise_rag/
-│
-├── rag_system/
-│   ├── ingestion/
-│   ├── vector_db/
-│   ├── graph/
-│   ├── retrieval/
-│   ├── main.py
-│   ├── env.py
-│   └── Copy of Enterprise_RAG.ipynb
-│
-├── setup.py
-├── requirements.txt
-└── README.md
-```
+### Import Errors
+- Run `pip install -e .` to ensure all dependencies are installed
+- Check that your Python version is 3.8 or higher: `python --version`
+
+### Streamlit Issues
+- If the browser doesn't open automatically, manually navigate to `http://localhost:8501`
+- To run on a different port: `streamlit run main.py --server.port 8502`
+
+## System Architecture
+
+The RAG system combines four key components:
+
+1. **Ingestion Layer**: Processes multimodal inputs (audio, images, PDFs) into structured formats
+2. **Storage Layer**: Maintains both vector embeddings (Qdrant) and knowledge graph (NetworkX)
+3. **Retrieval Layer**: Orchestrates hybrid search across vector and graph stores
+4. **Generation Layer**: Synthesizes retrieved information into coherent responses
+
+## Performance Notes
+
+- First-time ingestion of large document sets may take several minutes
+- The knowledge graph is persisted to `knowledge_graph.gpickle` for faster subsequent loads
+- Vector embeddings are stored in `qdrant_storage/` and reused across sessions
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-For issues or questions, please refer to the project documentation or open an issue in the repository.
+For issues or questions:
+- Open an issue in the GitHub repository
+- Check existing issues for similar problems
+- Refer to the inline documentation in the codebase
+
+## Roadmap
+
+- [ ] Complete evaluation metrics implementation (`deep_eval.py`)
+- [ ] Add support for additional media types (video, spreadsheets)
+- [ ] Implement caching for faster repeated queries
+- [ ] Add batch processing capabilities
+- [ ] Enhanced visualization of knowledge graph relationships

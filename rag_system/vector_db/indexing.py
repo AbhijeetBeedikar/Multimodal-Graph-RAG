@@ -1,7 +1,3 @@
-import importlib
-import rag_system.vector_db.env_vec as env_vec
-importlib.reload(env_vec)
-
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
