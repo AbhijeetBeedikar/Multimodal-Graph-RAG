@@ -1,6 +1,6 @@
 # Multimodal-Graph-RAG
 
-A multimodal Retrieval-Augmented Generation (RAG) system that combines vector search with knowledge graph retrieval for enhanced enterprise applications.
+A multimodal Retrieval-Augmented Generation (RAG) system that combines vector search with knowledge graph retrieval to answer context-rich queries. Attempted to mimic the technique used by modern LLMs to provide answers based on uploaded file context. 
 
 ## Prerequisites
 
